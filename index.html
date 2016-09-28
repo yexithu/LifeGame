@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<meta charset="UTF-8">
+  	<title>LifeGame</title>
+  	<link rel="stylesheet" type="text/css" href="css/main.css">
+  </head>
+  <body>
+    <h2>LifeGame</h2>
+  	<div id="ctl-pane">
+      <div id="num-input-group">
+        <label>Height</label>
+        <input type="number" class="num-input" id="height"
+                min="5" max="200" step="1" value="100">
+        <label>Width</label>
+        <input type="number" class="num-input" id="width"
+                min="18" max="200" step="1" value="100"> 
+        <label>Density</label>
+        <input type="number" class="num-input" id="density"
+                min="0.0" max="1.0" step="0.01" value="0.5">
+        <label>Frame Rate</label>
+        <input type="number" class="num-input" id="framerate"
+                min="1" max="30" step="1" value="10">
+      </div>
+      <div id="ctl-button-group">
+        <input type="button" value="Refresh" id="refresh">
+      </div>
+    </div>
+  	<div id="paint-pane">
+  		<canvas id='canvas'>
+  		</canvas>
+  	</div>
+  	<script src="js/jquery.min.js"></script>
+  	<script src="js/lifegame.js"></script>
+  	<script src="js/main.js"></script>
+  </body>
+</html>

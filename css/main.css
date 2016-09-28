@@ -1,0 +1,27 @@
+html, head, body, div, canvas, h2 {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+body {
+	padding: auto;
+	text-align: center;
+}
+
+h2 {
+	margin: 20px;
+}
+
+#ctl-pane div {
+	margin: 20px;
+}
+
+#ctl-pane input {
+	margin-right: 10px;
+}
+
+#canvas {
+	margin: auto;
+	border: 2px solid #E0E0E0;
+}
