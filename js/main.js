@@ -83,20 +83,20 @@ var Game = {
 	updateArgs: function () {
 		var height = parseInt($("#height").val());
 		var width = parseInt($("#width").val());
-		var density = parseFloat($("#wdensity").val());
+		var density = parseFloat($("#density").val());
 		var framerate = parseInt($("#framerate").val());
 		if (height <= 200 && height >= 5) {
-			this.height = height;
+			Game.height = height;
 		}
 		var maxWidth = Math.floor($(document).width() / this.gridSize);
 		if (width <= maxWidth && width >= 5) {
-			this.width = width;
+			Game.width = width;
 		}
 		if (density >= 0 && density <= 1) {
-			this.density = density;
+			Game.density = density;
 		}
 		if (framerate >= 1 && framerate <= 20) {
-			this.framerate = Math.floor(framerate);
+			Game.framerate = Math.floor(framerate);
 		}
 	},
 
@@ -109,17 +109,18 @@ var Game = {
 	updateLoop: function () {
 		Game.lifeGame.update();
 		Game.paintCells();
-		Game.nextTimerID = setTimeout(Game.updateLoop, 1000 / this.framerate);
+		Game.nextTimerID = setTimeout(Game.updateLoop, 1000 / Game.framerate);
 	},
 
 	act: function () {
 		Game.start();
-		$("#height").val(this.height);
-		$("#width").val(this.width);
-		$("#wdensity").val(this.density);
-		$("#framerate").val(this.framerate);
+		$("#height").val(Game.height);
+		$("#width").val(Game.width);
+		$("#wdensity").val(Game.density);
+		$("#framerate").val(Game.framerate);
 		Game.paintGrids();
-		Game.updateLoop();
+		Game.paintCells();
+		Game.nextTimerID = setTimeout(Game.updateLoop, 1000 / Game.framerate);
 	}
 };
 
