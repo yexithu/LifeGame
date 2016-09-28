@@ -1,7 +1,9 @@
 describe('LifeGame', function() {
-	it('should be a Object', function() {
-		var LifeGame = window.createLifeGame();
-		assert.isObject(LifeGame);
+	context('Basic test', function() {
+		it('should be an Object', function() {
+			var LifeGame = window.createLifeGame();
+			assert.isObject(LifeGame);
+		});
 	});
 
 	context('Test args set', function() {
@@ -53,8 +55,7 @@ describe('LifeGame', function() {
 
 		it('cells should contain p% alive cells at the beginning', function () {
 			var wanted = Math.floor(args.height * args.width * args.density);
-			var count = 0;
-			var lineStr = '';
+			var count = 0;	
 			for (var i in LifeGame.cells) {
 				for (var j in LifeGame.cells[i]) {
 					if (LifeGame.cells[i][j] === 1) {
@@ -99,7 +100,6 @@ describe('LifeGame', function() {
 			assert.deepEqual(LifeGame.countMap, expectedMap);
 		});
 		it('test correctness of status', function () {
-			console.log(LifeGame.cells);
 			assert.deepEqual(LifeGame.cells, expectedStatus);
 		});
 	});
