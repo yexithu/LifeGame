@@ -1,3 +1,5 @@
+/* eslint-env browser*/
+/* eslint-env jquery*/
 var Game = {
 	lifeGame: null,
 
@@ -23,26 +25,30 @@ var Game = {
 
 	nextTimerID: null,
 
-	init: function() {
-		this.canvas = document.getElementById('canvas');
+	init: function () {
+		this.canvas = document.getElementById("canvas");
 		this.context = this.canvas.getContext("2d");
 		this.initControl();
 	},
 
-	initControl: function() {
-		var obj = this;
-		$('#refresh').click(obj.onRefresh);
+	initControl: function () {
+		var that = this;
+		$("#refresh").click(that.onRefresh);
 	},
 
-	start: function() {
+	start: function () {
 		this.lifeGame = window.createLifeGame();
-		this.lifeGame.setArgs({width: Game.width, height: Game.height, density: Game.density});
+		this.lifeGame.setArgs({
+								width: Game.width,
+								height: Game.height,
+								density: Game.density
+							});
 		this.lifeGame.init();
-		this.canvas.width = (this.gridSize * this.lifeGame.width);
-		this.canvas.height = (this.gridSize * this.lifeGame.height);
+		this.canvas.width = this.gridSize * this.lifeGame.width;
+		this.canvas.height = this.gridSize * this.lifeGame.height;
 	},
 
-	paintGrids: function() {
+	paintGrids: function () {
 		this.context.strokeStyle = "#C0C0C0";
 		this.context.lineWidth = this.lineWidth;
 		var s = this.gridSize;
@@ -54,29 +60,35 @@ var Game = {
 		}
 	},
 
-	paintCells: function() {
+	paintCells: function () {
 		var lg = this.lifeGame;
 		var l = this.gridSize;
 		var lw = this.lineWidth;
 		var i, j;
 		for (i = 0; i < lg.height; ++i) {
 			for (j = 0; j < lg.width; ++j) {
-				this.context.fillStyle = (lg.cells[i][j] === 1) ?
-					this.ALIVECOLOR : this.DEADCOLOR;
-				this.context.fillRect(l * j + lw, l * i + lw, l - 2 * lw, l - 2 * lw);
+				// this.context.fillStyle = lg.cells[i][j] === 1 ?
+				// this.ALIVECOLOR : this.DEADCOLOR;
+				if (lg.cells[i][j] === 1) {
+					this.context.fillStyle = this.ALIVECOLOR;
+				} else {
+					this.context.fillStyle = this.DEADCOLOR;
+				}
+				this.context.fillRect(l * j + lw, l * i + lw,
+					l - 2 * lw, l - 2 * lw);
 			}
 		}
 	},
 
-	updateArgs: function() {
-		var height = parseInt($('#height').val());
-		var width = parseInt($('#width').val());
-		var density = parseFloat($('#wdensity').val());
-		var framerate = parseInt($('#framerate').val());
+	updateArgs: function () {
+		var height = parseInt($("#height").val());
+		var width = parseInt($("#width").val());
+		var density = parseFloat($("#wdensity").val());
+		var framerate = parseInt($("#framerate").val());
 		if (height <= 200 && height >= 5) {
 			this.height = height;
 		}
-		var maxWidth = Math.floor($(document).width()/ this.gridSize);
+		var maxWidth = Math.floor($(document).width() / this.gridSize);
 		if (width <= maxWidth && width >= 5) {
 			this.width = width;
 		}
@@ -88,28 +100,28 @@ var Game = {
 		}
 	},
 
-	onRefresh: function() {
+	onRefresh: function () {
 		clearTimeout(Game.nextTimerID);
-		Game.updateArgs();	
+		Game.updateArgs();
 		Game.act();
 	},
 
-	updateLoop: function() {
+	updateLoop: function () {
 		Game.lifeGame.update();
 		Game.paintCells();
 		Game.nextTimerID = setTimeout(Game.updateLoop, 1000 / this.framerate);
 	},
 
-	act: function() {
+	act: function () {
 		Game.start();
-		$('#height').val(this.height);
-		$('#width').val(this.width);
-		$('#wdensity').val(this.density);
-		$('#framerate').val(this.framerate);
+		$("#height").val(this.height);
+		$("#width").val(this.width);
+		$("#wdensity").val(this.density);
+		$("#framerate").val(this.framerate);
 		Game.paintGrids();
 		Game.updateLoop();
 	}
-}
+};
 
 Game.init();
 Game.act();
