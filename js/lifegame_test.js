@@ -1,11 +1,11 @@
 describe('LifeGame', function() {
 	it('should be a Object', function() {
-		var LifeGame = createLifeGame();
+		var LifeGame = window.createLifeGame();
 		assert.isObject(LifeGame);
 	});
 
 	context('Test args set', function() {
-		var LifeGame = createLifeGame();
+		var LifeGame = window.createLifeGame();
 		var args = {
 			height: 3,
 			width: 3,
@@ -24,7 +24,7 @@ describe('LifeGame', function() {
 	});
 
 	context('Test init part', function() {
-		var LifeGame = createLifeGame();
+		var LifeGame = window.createLifeGame();
 		var i;
 		var args = {
 			height: 50,
@@ -67,7 +67,7 @@ describe('LifeGame', function() {
 	});
 	
 	context('Test update part', function () {
-		var LifeGame = createLifeGame();
+		var LifeGame = window.createLifeGame();
 		var input = [
 			[1, 0, 1, 0, 1],
 			[0, 1, 0, 0, 0],

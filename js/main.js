@@ -35,7 +35,7 @@ var Game = {
 	},
 
 	start: function() {
-		this.lifeGame = createLifeGame();
+		this.lifeGame = window.createLifeGame();
 		this.lifeGame.setArgs({width: Game.width, height: Game.height, density: Game.density});
 		this.lifeGame.init();
 		this.canvas.width = (this.gridSize * this.lifeGame.width);
@@ -102,7 +102,6 @@ var Game = {
 
 	act: function() {
 		Game.start();
-		console.log('HAHA');
 		$('#height').val(this.height);
 		$('#width').val(this.width);
 		$('#wdensity').val(this.density);

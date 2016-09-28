@@ -1,4 +1,7 @@
-createLifeGame = function () {
+/* eslint-env browser*/
+/* global createLifeGame */
+/* exported createLifeGame */
+window.createLifeGame = function () {
 	return {
 		width: 100,
 
@@ -28,20 +31,19 @@ createLifeGame = function () {
 					this.countMap[i][j] = 0;
 				}
 			}
-			
 			this.initStatus();
 		},
 
 		initStatus: function () {
-			var wanted = Math.floor(this.width * this.height * this.density);
-			var randI, randJ;
-			var count = 0;
+			var count, randI, randJ, wanted;
+			wanted = Math.floor(this.width * this.height * this.density);
+			count = 0;
 			while (count < wanted) {
 				randI = this.randInt(this.height);
 				randJ = this.randInt(this.width);
 				if (this.cells[randI][randJ] === 0) {
 					this.cells[randI][randJ] = 1;
-					count = count + 1;
+					count += 1;
 				}
 			}
 		},
@@ -61,36 +63,44 @@ createLifeGame = function () {
 			}
 		},
 
-		updateCount: function() {
-			var h = this.height;
-			var w = this.width;
-			var obj = this;
+		updateCount: function () {
+			var h, w;
+			h = this.height;
+			w = this.width;
+			var that = this;
 
-			var _i = function(a) {
-				if (a < 0)
+			var _i = function (a) {
+				if (a < 0) {
 					return a + h;
-				if (a >= h)
+				}
+				if (a >= h) {
 					return a - h;
+				}
+
 				return a;
 			};
 
-			var _j = function(b) {
-				if (b < 0)
+			var _j = function (b) {
+				if (b < 0) {
 					return b + w;
-				if (b >= w)
+				}
+				if (b >= w) {
 					return b - w;
+				}
+
 				return b;
 			};
 
-			var _countArround = function(m, n) {
+			var _countArround = function (m, n) {
 				var x, y;
 				var count = 0;
 				for (x = m - 1; x <= m + 1; ++x) {
 					for (y = n - 1; y <= n + 1; ++y) {
-						count = count + obj.cells[_i(x)][_j(y)];
+						count += that.cells[_i(x)][_j(y)];
 					}
 				}
-				count = count - obj.cells[m][n];
+				count -= that.cells[m][n];
+
 				return count;
 			};
 
@@ -102,12 +112,12 @@ createLifeGame = function () {
 			}
 		},
 
-		updateStatus: function() {
-			var obj = this;
-			_changeStatus =  function(m, n) {
-				if (obj.countMap[m][n] === obj.NUMSTAY) {
-					return obj.cells[m][n];
-				} else if (obj.countMap[m][n] === obj.NUMLIVE) {
+		updateStatus: function () {
+			var that = this;
+			var _changeStatus = function (m, n) {
+				if (that.countMap[m][n] === that.NUMSTAY) {
+					return that.cells[m][n];
+				} else if (that.countMap[m][n] === that.NUMLIVE) {
 					return 1;
 				} else {
 					return 0;

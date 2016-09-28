@@ -70,7 +70,7 @@
         "max-lines": "error",
         "max-nested-callbacks": "error",
         "max-params": "error",
-        "max-statements": "error",
+
         "max-statements-per-line": "error",
         "multiline-ternary": "error",
         "new-cap": "error",
@@ -90,7 +90,6 @@
         "no-continue": "error",
         "no-div-regex": "error",
         "no-duplicate-imports": "error",
-        "no-else-return": "error",
         "no-empty-function": "off",
         "no-eq-null": "error",
         "no-eval": "error",
@@ -157,7 +156,6 @@
         "no-trailing-spaces": "error",
         "no-undef-init": "error",
         "no-undefined": "error",
-        "no-underscore-dangle": "error",
         "no-unmodified-loop-condition": "error",
         "no-unneeded-ternary": "error",
         "no-unsafe-negation": "error",
@@ -178,7 +176,6 @@
         "object-curly-spacing": "error",
         "object-property-newline": "error",
         "object-shorthand": "off",
-        "one-var": "error",
         "one-var-declaration-per-line": [
             "error",
             "initializations"
